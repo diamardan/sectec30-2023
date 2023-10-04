@@ -100,7 +100,7 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
     return WidgetToImage(builder: (key) {
       this.key1 = key;
       return Container(
-          width: 340,
+          width: 342,
           height: 218,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.transparent, width: 1),
@@ -112,7 +112,6 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
           ),
           child: Row(children: [
             _frontDataCredentialContainer(registration),
-            _frontCareerContainer(registration),
           ]));
     });
   }
@@ -122,7 +121,7 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
       this.key2 = key;
 
       return Container(
-        width: 360,
+        width: 342,
         height: 218,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.transparent, width: 1),
@@ -133,9 +132,6 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
               fit: BoxFit.contain),
         ),
         child: Column(children: [
-          const SizedBox(
-            height: 20,
-          ),
           _stripeBack(registration),
           _contentBack(registration),
         ]),
@@ -145,16 +141,16 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
 
   Widget _frontDataCredentialContainer(Registration registration) {
     return Container(
-      width: 302,
+      width: 340,
       height: 218,
-      color: Colors.transparent,
+      color: const Color.fromARGB(43, 255, 205, 210),
       child: Column(
         children: [
           const SizedBox(
             height: 35,
           ),
           _studentPersonalData(registration),
-          _frontCredentialFooter(registration),
+          /* _frontCredentialFooter(registration), */
         ],
       ),
     );
@@ -163,45 +159,81 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
   Widget _studentPersonalData(Registration registration) {
     return Container(
       color: const Color.fromARGB(0, 76, 175, 79),
-      width: 302,
-      height: 120,
+      width: 342,
+      height: 160,
       child: Row(children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
-          child: buildCacheNetworkImage(
-              width: 90,
-              height: 100,
-              url:
-                  "https://drive.google.com/uc?id=${registration.studentPhotoPath}"),
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(17, 10, 8, 4),
+              child: buildCacheNetworkImage(
+                  width: 70,
+                  height: 80,
+                  url:
+                      "https://drive.google.com/uc?id=${registration.studentPhotoPath}"),
+            ),
+            FittedBox(
+                child: Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Text(
+                registration.idbio!,
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
+              ),
+            )),
+            SizedBox(
+              height: 33,
+              child: buildCacheNetworkImage(
+                  width: 30,
+                  height: 30,
+                  url:
+                      "https://drive.google.com/uc?id=${registration.studentQrPath}"),
+            ),
+            Container(
+              width: 80,
+              child: FittedBox(
+                  child: Text(
+                registration.curp!,
+                style: const TextStyle(fontWeight: FontWeight.w900),
+              )),
+            )
+          ],
         ),
         const SizedBox(
           width: 10,
         ),
-        SizedBox(
+        Container(
+          color: Colors.transparent,
           width: 180,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 45,
+                height: 90,
               ),
               FittedBox(
                 child: Text(
-                  registration.names!,
+                  '${registration.names!} ${registration.surnames!}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              FittedBox(
-                child: Text(registration.surnames!,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-              ),
-              FittedBox(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Text(
-                    registration.curp!,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0, top: 10),
+                child: SizedBox(
+                  height: 33,
+                  width: 180,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: buildCacheNetworkImage(
+                            width: 70,
+                            height: 30,
+                            url:
+                                "https://drive.google.com/uc?id=${registration.studentSignaturePath}"),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -212,93 +244,12 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
     );
   }
 
-  Widget _frontCredentialFooter(Registration registration) {
-    return Container(
-      width: 302,
-      height: 55,
-      color: Color.fromARGB(0, 244, 67, 54),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-        const SizedBox(
-          width: 35,
-        ),
-        buildCacheNetworkImage(
-            height: 50,
-            width: 50,
-            url:
-                "https://drive.google.com/uc?id=${registration.studentQrPath}"),
-        const SizedBox(
-          width: 5,
-        ),
-        Text(
-          registration.idbio!,
-          style: const TextStyle(color: primaryColor),
-        ),
-        /* const SizedBox(
-          width: 30,
-        ), */
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 49,
-                width: 170,
-                child: registration.registrationNumber != ""
-                    ? BarcodeWidget(
-                        data: registration.registrationNumber!,
-                        barcode: Barcode.code128())
-                    : const SizedBox(),
-              ),
-            ],
-          ),
-        )
-      ]),
-    );
-  }
-
-  Widget _frontCareerContainer(Registration registration) {
-    return Container(
-      width: 30,
-      height: 218,
-      color: Colors.transparent,
-      child: RotatedBox(
-        quarterTurns: 1,
-        child: FittedBox(
-            child: Padding(
-          padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
-          child: Text(
-            registration.career!.name!,
-            style: TextStyle(color: Colors.white),
-          ),
-        )),
-      ),
-    );
-  }
-
   Widget _stripeBack(Registration registration) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
-          decoration: const BoxDecoration(color: Color.fromARGB(0, 4, 85, 226)),
-          height: 15,
-          width: 200,
-          child: Column(children: [
-            SizedBox(
-              width: 180,
-              height: 15,
-              child: Text(
-                '               ${registration.turn!.name!}',
-                textAlign: TextAlign.left,
-                style: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ]),
-        ),
         const SizedBox(
-          width: 30,
+          width: 80,
         ),
         Column(
           children: [
@@ -312,13 +263,13 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   FittedBox(
                     child: Text(
                       '${registration.fecha!}',
                       style: const TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 10),
                     ),
@@ -326,38 +277,9 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-                  FittedBox(
-                    child: Text(
-                      int.parse(registration.grade!.name!) > 1
-                          ? cardValidityOld
-                          : cardValidityNew,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10),
-                    ),
-                  ),
                 ],
               ),
             ),
-            /*  Container(
-              width: 90,
-              height: 20,
-              decoration:
-                  const BoxDecoration(color: Color.fromARGB(0, 68, 137, 255)),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    '',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10),
-                  ),
-                ],
-              ),
-            ), */
           ],
         )
       ],
@@ -370,8 +292,8 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 150,
-          height: 120,
+          width: 110,
+          height: 130,
           color: Color.fromARGB(0, 48, 255, 7),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -379,12 +301,25 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
               SizedBox(
                 width: 90,
                 child: Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      registration.grade!.name!,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                  const SizedBox(
+                    height: 55,
+                  ),
+                  Container(
+                    width: 50,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(top: 9.0, left: 10, bottom: 4),
+                      child: FittedBox(
+                        child: Text(
+                          registration.turn!.name!,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
+                  ),
+                  Text(
+                    registration.grade!.name!,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
                     registration.group!.name!,
@@ -395,38 +330,14 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
                   ),
                 ]),
               ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  buildCacheNetworkImage(
-                      width: 40,
-                      height: 50,
-                      url:
-                          "https://drive.google.com/uc?id=${registration.studentPhotoPath}"),
-                  registration.studentSignaturePath != null
-                      ? Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: buildCacheNetworkImage(
-                              height: 24,
-                              url:
-                                  "https://drive.google.com/uc?id=${registration.studentSignaturePath}"),
-                        )
-                      : const Placeholder(
-                          color: Colors.black,
-                          child: SizedBox(
-                            width: 100,
-                            height: 30,
-                          ),
-                        )
-                ],
-              )
             ],
           ),
         ),
+        const SizedBox(
+          width: 80,
+        ),
         Container(
-          margin: const EdgeInsets.fromLTRB(2, 15, 2, 10),
+          margin: const EdgeInsets.fromLTRB(2, 60, 2, 10),
           width: 60,
           height: 60,
           color: Color.fromARGB(0, 255, 7, 193),
