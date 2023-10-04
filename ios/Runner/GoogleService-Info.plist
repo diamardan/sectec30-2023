@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyC1Y99xKTJJ8GozYYqu8H7964oiV2EEoMY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>585285587856</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.datamexab.sectec30</string>
+	<key>PROJECT_ID</key>
+	<string>sectec30-notifications</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sectec30-notifications.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:585285587856:ios:3dcfd324bf7e7e2e5e1915</string>
+</dict>
+</plist>

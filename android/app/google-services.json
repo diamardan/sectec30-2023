@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "982020713610",
+    "project_number": "585285587856",
     "project_id": "sectec30-notifications",
     "storage_bucket": "sectec30-notifications.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:982020713610:android:4e56624e72256927ec5173",
+        "mobilesdk_app_id": "1:585285587856:android:9ed78a2b472c2b5f5e1915",
         "android_client_info": {
           "package_name": "com.identaflix.sectec30_app_registro"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAAWJso6cEznOMZlNDtwkT6wRo_ESCGGSg"
+          "current_key": "AIzaSyDiyE2LRzCCofKKH52O8AruI759LtsyNI8"
         }
       ],
       "services": {
