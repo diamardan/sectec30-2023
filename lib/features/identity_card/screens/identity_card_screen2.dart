@@ -160,14 +160,14 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
     return Container(
       color: const Color.fromARGB(0, 76, 175, 79),
       width: 342,
-      height: 160,
+      height: 170,
       child: Row(children: [
         Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(17, 10, 8, 4),
               child: buildCacheNetworkImage(
-                  width: 70,
+                  width: 80,
                   height: 80,
                   url:
                       "https://drive.google.com/uc?id=${registration.studentPhotoPath}"),
@@ -188,6 +188,9 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
                   height: 30,
                   url:
                       "https://drive.google.com/uc?id=${registration.studentQrPath}"),
+            ),
+            SizedBox(
+              height: 5,
             ),
             Container(
               width: 80,
@@ -251,7 +254,7 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
         const SizedBox(
           width: 80,
         ),
-        Column(
+        Row(
           children: [
             Container(
               width: 90,
@@ -260,18 +263,29 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
                   const BoxDecoration(color: Color.fromARGB(0, 255, 68, 93)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: 10,
                   ),
-                  FittedBox(
-                    child: Text(
-                      '${registration.fecha!}',
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10),
+                  Container(
+                    width: 80,
+                    child: FittedBox(
+                      child: Text(
+                        '${registration.fecha!}',
+                        style: const TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 80,
+                    child: const FittedBox(
+                      child: Text(
+                        '${cardValidityOld}',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -292,23 +306,25 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 110,
+          padding: EdgeInsets.only(left: 20),
+          width: 120,
           height: 130,
           color: Color.fromARGB(0, 48, 255, 7),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                width: 90,
+                width: 120,
                 child: Column(children: [
                   const SizedBox(
-                    height: 55,
+                    height: 18,
                   ),
                   Container(
-                    width: 50,
+                    width: 90,
                     child: Padding(
                       padding:
-                          const EdgeInsets.only(top: 9.0, left: 10, bottom: 4),
+                          const EdgeInsets.only(top: 7.0, left: 30, bottom: 2),
                       child: FittedBox(
                         child: Text(
                           registration.turn!.name!,
@@ -334,10 +350,10 @@ class NewIdentityCardScreenState extends ConsumerState<NewIdentityCardScreen> {
           ),
         ),
         const SizedBox(
-          width: 80,
+          width: 20,
         ),
         Container(
-          margin: const EdgeInsets.fromLTRB(2, 60, 2, 10),
+          margin: const EdgeInsets.fromLTRB(2, 20, 2, 10),
           width: 60,
           height: 60,
           color: Color.fromARGB(0, 255, 7, 193),

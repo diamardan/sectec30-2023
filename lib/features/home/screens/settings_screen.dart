@@ -67,7 +67,8 @@ class SettingsScreen extends ConsumerWidget {
             height: profilePictureSize,
             child: GestureDetector(
               onTap: () {
-                context.push('/profile');
+                final appRouter = ref.read(goRouterProvider);
+                appRouter.push('/profile');
               },
               child: CircleAvatar(
                 backgroundColor: Colors.grey[200],

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 const String appName = 'SECTEC 30';
 
 // color for apps
-const Color primaryColor = Color(0XFF621152);
+const Color primaryColor = Color(0XFF990000);
 const Color black21 = Color(0xFF212121);
 const Color softGrey = Color(0xFFa1a1a1);
 const Color blackGrey = Color(0xff656364);
