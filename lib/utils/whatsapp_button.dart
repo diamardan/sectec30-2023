@@ -39,9 +39,14 @@ class _WhatsappHelpBtnState extends State<WhatsappHelpBtn> {
             const SizedBox(
               width: 10,
             ),
-            Text(
-              'Ayuda',
-              style: TextStyle(color: Colors.white.withOpacity(0.8)),
+            SizedBox(
+              width: 130,
+              child: FittedBox(
+                child: Text(
+                  'SOPORTE únicamente  \n para CREDENCIALES',
+                  style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                ),
+              ),
             )
           ],
         ),

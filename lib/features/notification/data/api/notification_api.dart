@@ -17,4 +17,32 @@ class NotificationApi {
       rethrow;
     }
   }
+
+  Future getNotification(String userId) async {
+    try {
+      final res = await _dioClient.get('/notifications/$userId');
+      return res.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future readNotification(String userId, String notificationId) async {
+    try {
+      final res = await _dioClient
+          .put('/notifications/$notificationId/mark-as-read/$userId');
+      return res.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future getNotificationById(String notificationId) async {
+    try {
+      final res = await _dioClient.get('/notifications/view/$notificationId');
+      return res.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

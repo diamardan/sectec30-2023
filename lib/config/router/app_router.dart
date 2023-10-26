@@ -7,6 +7,7 @@ import 'package:sectec30/features/home/screens/settings_screen.dart';
 import 'package:sectec30/features/home/screens/term_conditions_screen.dart';
 import 'package:sectec30/features/identity_card/screens/identity_card_screen.dart';
 import 'package:sectec30/features/identity_card/screens/identity_card_screen2.dart';
+import 'package:sectec30/features/notification/screens/notification_detail_screen.dart';
 import 'package:sectec30/features/notification/screens/notification_screen.dart';
 import 'package:sectec30/features/attendance/screens/attendance_screen.dart';
 import 'package:sectec30/features/profile/screens/profile_screen.dart';
@@ -52,6 +53,13 @@ final goRouterProvider = Provider((ref) {
       GoRoute(
           path: '/notifications',
           builder: (context, state) => NotificationScreen()),
+      GoRoute(
+        path: '/notification-detail',
+        name: 'notification-detail',
+        builder: (context, state) => NotificationDetailScreen(
+          id: state.extra as String,
+        ),
+      ),
       GoRoute(path: '/settings', builder: (context, state) => SettingsScreen()),
       GoRoute(path: '/about', builder: (context, state) => const AboutScreen()),
 

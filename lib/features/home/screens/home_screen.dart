@@ -110,7 +110,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
       "deviceId": androidInfo.id,
       "brand": androidInfo.brand,
       "model": androidInfo.model,
-      "os": androidInfo.serialNumber,
+      "os": 'android',
       "version": androidInfo.version.release,
     };
   }
@@ -216,23 +216,34 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
             height: 40,
             color: Colors.grey[300],
           ),
-          IconButton(
-              // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
-              icon: FaIcon(
-                FontAwesomeIcons.whatsapp,
-                size: 40,
-                color: softGreen,
-              ),
-              onPressed: () async {
-                final Uri url = Uri.parse(
-                    "whatsapp://send?phone=$whatsappNumber&text=$whatsappText, ");
-                try {
-                  launchUrl(url);
-                } catch (e) {
-                  await NotifyUI.showBasic(
-                      context, 'Aviso', 'WhatsApp no instalado');
-                }
-              })
+          Column(
+            children: [
+              const SizedBox(
+                  width: 100,
+                  child: FittedBox(
+                      child: Text(
+                    "SOPORTE únicamente \n para CREDENCIALES",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ))),
+              IconButton(
+                  // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
+                  icon: const FaIcon(
+                    FontAwesomeIcons.whatsapp,
+                    size: 40,
+                    color: softGreen,
+                  ),
+                  onPressed: () async {
+                    final Uri url = Uri.parse(
+                        "whatsapp://send?phone=$whatsappNumber&text=$whatsappText, ");
+                    try {
+                      launchUrl(url);
+                    } catch (e) {
+                      await NotifyUI.showBasic(
+                          context, 'Aviso', 'WhatsApp no instalado');
+                    }
+                  }),
+            ],
+          )
         ],
       ),
     );

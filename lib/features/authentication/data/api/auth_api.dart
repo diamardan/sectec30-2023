@@ -10,7 +10,9 @@ class AuthApi {
   Future loginWithQr(String qr) async {
     try {
       final res = await _dioClient.post('/auth/qr', data: {'qrHash': qr});
-      return res.data;
+      if (res.statusCode! >= 200 && res.statusCode! < 300) {
+        return res.data;
+      }
     } catch (e) {
       rethrow;
     }
