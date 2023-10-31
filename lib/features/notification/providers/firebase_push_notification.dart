@@ -44,7 +44,7 @@ class FirebasePushNotification {
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       debugPrint('User granted permission');
-      _getFCMToken();
+      getFCMToken();
     } else if (settings.authorizationStatus ==
         AuthorizationStatus.provisional) {
       debugPrint('User granted provisional permission');
@@ -83,7 +83,7 @@ class FirebasePushNotification {
     });
   }
 
-  void _getFCMToken() async {
+  Future<String> getFCMToken() async {
     final token = await messaging
         .getToken(); /* .then((token) {
       print('APNS Token: $token');
@@ -92,6 +92,7 @@ class FirebasePushNotification {
     print('APNS Token: $tokenString');
     await keyValueStorageService.setKeyValue('fcm', tokenString);
     debugPrint(token);
+    return token;
   }
 
   Future<void> _setupInteractedMessage() async {

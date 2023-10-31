@@ -12,6 +12,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:scan/scan.dart';
+import 'package:sectec30/features/notification/providers/firebase_push_notification.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -82,9 +83,19 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
     if (request.isGranted) {
       // Permiso concedido, puedes usar la cámara
       String qr = await scanQR();
-      if (qr.isNotEmpty) {
+      if (qr != "-1") {
+        final container = ProviderContainer();
+        final firebasePushNotification =
+            container.read(firebasePushNotificationProvider);
+
+        await firebasePushNotification.getFCMToken();
+
+        container.dispose();
         //Map<String, dynamic> response = await signInController.authenticate(qr);
         ref.read(authProvider.notifier).loginWithQr(qr);
+      } else {
+        NotifyUI.showBasic(
+            context, 'Aviso', 'Escaneo de QR cancelado o inválido');
       }
       return;
     } else {
