@@ -14,6 +14,7 @@ class ProfileScreen extends ConsumerWidget {
 
     return SafeArea(
         child: Scaffold(
+      appBar: AppBar(title: const Text('')),
       body: Center(
         child: buildCacheNetworkImage(
             url: "https://drive.google.com/uc?id=${profile.studentPhotoPath}"),

@@ -69,16 +69,16 @@ class FirebasePushNotification {
       AndroidNotification? android = message.notification?.android;
       Map<String, dynamic> data = message.data;
 
-      if (notification != null && android != null) {
+      if (notification != null) {
         debugPrint(
             'Message also contained a notification: ${message.notification}');
         _localPushNotification.showNotification(ReceivedNotification(
             notification.hashCode,
             notification.title,
             notification.body,
-            android.imageUrl,
+            android?.imageUrl,
             jsonEncode(data),
-            android.smallIcon));
+            android?.smallIcon));
       }
     });
   }

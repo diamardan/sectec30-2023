@@ -54,7 +54,7 @@ class LocalPushNotification {
         message.body,
         NotificationDetails(
             android: _androidNotificationDetails(message.smallIcon),
-            iOS: const DarwinNotificationDetails()),
+            iOS: const DarwinNotificationDetails(sound: 'default')),
         payload: message.payload);
   }
 

@@ -10,6 +10,7 @@ class AttendanceApi {
   Future getCalendar(String? idBio) async {
     try {
       final res = await _dioClient.get('/attendance/calendar/$idBio');
+      print(res.data);
       return res.data;
     } catch (e) {
       print(e);

@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '585285587856',
     projectId: 'sectec30-notifications',
     storageBucket: 'sectec30-notifications.appspot.com',
-    iosBundleId: 'com.datamexab.sectec30',
+    iosBundleId: 'com.identaflix.sectec30-app-registro',
   );
 }
